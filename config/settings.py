@@ -149,11 +149,16 @@ MAILERS = {
 
 REST_FRAMEWORK={
     'DEFAULT_AUTHENTICATION_CLASSES':(
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'visionmadera.auth.CustomJWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES':(
+        'rest_framework.permissions.AllowAny',
     ),
 }
 
 SIMPLE_JWT={
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'USER_ID_FIELD': 'documento',
+    'USER_ID_CLAIM': 'user_id',
 }
