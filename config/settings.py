@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import os
+import sys
 from pathlib import Path
 from datetime import timedelta
 
@@ -90,6 +92,12 @@ DATABASES = {
         },
     }
 }
+
+if 'test' in sys.argv or os.environ.get('USE_SQLITE_FOR_TESTS') == '1':
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'test_db.sqlite3',
+    }
 
 
 

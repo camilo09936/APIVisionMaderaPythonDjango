@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import TipoPqrs, Pqrs
 
-# Register your models here.
+admin.site.register(TipoPqrs)
+admin.site.register(Pqrs)

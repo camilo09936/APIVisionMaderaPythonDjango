@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from visionmadera.views import (UsuarioViewSet, EstadoCitaViewSet, BloqueHorarioViewSet, SedeViewSet)
+from visionmadera.views import (UsuarioViewSet, EstadoCitaViewSet, BloqueHorarioViewSet, SedeViewSet, TipoPqrsViewSet, PqrsViewSet)
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
 router= DefaultRouter()
@@ -25,6 +25,8 @@ router.register('usuarios', UsuarioViewSet)
 router.register('estadoCita', EstadoCitaViewSet)
 router.register('bloqueHorario', BloqueHorarioViewSet)
 router.register('sede', SedeViewSet)
+router.register('tipoPqrs', TipoPqrsViewSet)
+router.register('pqrs', PqrsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

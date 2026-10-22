@@ -38,3 +38,22 @@ class Sede(models.Model):
     
     def __str__(self):
         return self.nombre
+
+class TipoPqrs(models.Model):
+    id_tipo_pqrs = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.nombre
+
+
+class Pqrs(models.Model):
+    id_pqrs = models.AutoField(primary_key=True)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='pqrs')
+    tipo_pqrs = models.ForeignKey(TipoPqrs, on_delete=models.PROTECT, related_name='pqrs')
+    descripcion = models.TextField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    respuesta = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"PQRS - {self.tipo_pqrs.nombre}"
