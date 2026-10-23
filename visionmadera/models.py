@@ -38,3 +38,34 @@ class Sede(models.Model):
     
     def __str__(self):
         return self.nombre
+
+class Disenador(models.Model):
+    id_disenador= models.AutoField(auto_created=True, primary_key=True)
+    nombre= models.CharField(max_length=100)
+    apellido= models.CharField(max_length=100)
+    correo= models.EmailField(max_length=100, unique=True)
+    sede= models.ForeignKey(Sede, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+
+class AgendaDisenador(models.Model):
+    id_agenda= models.AutoField(auto_created=True, primary_key=True)
+    disenador= models.ForeignKey(Disenador, on_delete=models.PROTECT)
+    dia_semana= models.CharField(max_length=20)
+    bloque= models.ForeignKey(BloqueHorario, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f"{self.disenador} - {self.dia_semana} ({self.bloque})"
+
+class Cita(models.Model):
+    id_cita= models.AutoField(auto_created=True, primary_key=True)
+    fecha= models.DateField()
+    bloque= models.ForeignKey(BloqueHorario, on_delete=models.PROTECT)
+    estado_cita= models.ForeignKey(EstadoCita, on_delete=models.PROTECT, default=1)
+    usuario= models.ForeignKey(Usuario, on_delete=models.PROTECT)
+    sede= models.ForeignKey(Sede, on_delete=models.PROTECT)
+    disenador= models.ForeignKey(Disenador, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f"Cita {self.id_cita} - {self.fecha}"
