@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from visionmadera.views import (UsuarioViewSet, EstadoCitaViewSet, BloqueHorarioViewSet, SedeViewSet, TipoPqrsViewSet, CalificacionViewSet, DisenadorViewSet, AgendaDisenadorViewSet, CitaViewSet)
-from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
+from rest_framework_simplejwt.views import (TokenRefreshView, TokenObtainPairView)
+from visionmadera.views import (UsuarioViewSet, EstadoCitaViewSet, BloqueHorarioViewSet, SedeViewSet, TipoPqrsViewSet, PqrsViewSet, CalificacionViewSet, DisenadorViewSet, AgendaDisenadorViewSet, CitaViewSet, EstadoPqrsViewSet)
 
 router= DefaultRouter()
 router.register('usuarios', UsuarioViewSet)
@@ -26,6 +26,8 @@ router.register('estadoCita', EstadoCitaViewSet)
 router.register('bloqueHorario', BloqueHorarioViewSet)
 router.register('sede', SedeViewSet)
 router.register('tipoPqrs', TipoPqrsViewSet)
+router.register('estadoPqrs', EstadoPqrsViewSet)
+router.register('pqrs', PqrsViewSet)
 router.register('calificaciones', CalificacionViewSet)
 router.register('disenadores', DisenadorViewSet)
 router.register('agenda-disenadores', AgendaDisenadorViewSet)
