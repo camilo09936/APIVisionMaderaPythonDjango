@@ -102,17 +102,9 @@ class Pqrs(models.Model):
 class Calificacion(models.Model):
     id_calificacion = models.AutoField(primary_key=True)
     puntaje = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-    cita = models.ForeignKey(Cita, on_delete=models.PROTECT)
-
-    def __str__(self):
-        return f"Calificación {self.puntaje} - Cita {self.cita.id_cita}"
-    
-    comentario = models.CharField(max_length=500, blank=True, null=True) 
+    comentario = models.CharField(max_length=500, blank=True, null=True)
     fecha = models.DateField(auto_now_add=True)
-    cita = models.OneToOneField(
-        Cita, 
-        on_delete=models.CASCADE
-    )
+    cita = models.ForeignKey(Cita, on_delete=models.PROTECT)
 
     def __str__(self):
         return f"Calificación {self.puntaje} - Cita {self.cita.id_cita}"
