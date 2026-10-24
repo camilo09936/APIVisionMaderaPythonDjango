@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import (Usuario, EstadoCita, BloqueHorario, Sede)
-from .serializers import(UsuarioSerializer, EstadoCitaSerializer, BloqueHorarioSerializer, SedeSerializer)
+from .models import (Usuario, EstadoCita, BloqueHorario, Sede, TipoPqrs, Calificacion)
+from .serializers import(UsuarioSerializer, EstadoCitaSerializer, BloqueHorarioSerializer, SedeSerializer, TipoPqrsSerializer, CalificacionSerializer)
 from rest_framework.permissions import IsAuthenticated
 
 class UsuarioViewSet(viewsets.ModelViewSet):
@@ -23,3 +23,11 @@ class SedeViewSet(viewsets.ModelViewSet):
     queryset= Sede.objects.all()
     serializer_class= SedeSerializer
     permission_classes= [IsAuthenticated]
+
+class TipoPqrsViewSet(viewsets.ModelViewSet):
+    queryset = TipoPqrs.objects.all()
+    serializer_class = TipoPqrsSerializer
+
+class CalificacionViewSet(viewsets.ModelViewSet):
+    queryset = Calificacion.objects.all()
+    serializer_class = CalificacionSerializer

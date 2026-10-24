@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Usuario(models.Model):
     documento= models.CharField(max_length=30, primary_key=True)
@@ -69,3 +70,26 @@ class Cita(models.Model):
 
     def __str__(self):
         return f"Cita {self.id_cita} - {self.fecha}"
+    
+class TipoPqrs(models.Model):
+    id_tipo_pqrs = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.nombre
+    
+class Calificacion(models.Model):
+    id_calificacion = models.AutoField(primary_key=True)
+    puntaje = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    comentario = models.CharField(max_length=500, blank=True, null=True) 
+    fecha = models.DateField(auto_now_add=True)
+    cita = models.OneToOneField(
+        Cita, 
+        on_delete=models.CASCADE, 
+        db_column='id_cita'
+    )
+
+    def __str__(self):
+        return f"Calificación {self.puntaje} - Cita {self.cita.id_cita}"

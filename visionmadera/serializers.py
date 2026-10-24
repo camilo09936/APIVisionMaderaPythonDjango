@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import (Usuario, EstadoCita, BloqueHorario, Sede)
+from .models import (Usuario, EstadoCita, BloqueHorario, Sede, TipoPqrs, Calificacion)
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,3 +20,13 @@ class SedeSerializer(serializers.ModelSerializer):
     class Meta:
         model= Sede
         fields= '__all__'
+
+class TipoPqrsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoPqrs
+        fields = '__all__'
+
+class CalificacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Calificacion
+        fields = '__all__'

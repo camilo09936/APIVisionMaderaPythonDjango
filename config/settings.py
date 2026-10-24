@@ -79,13 +79,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': 'VisionMaderaPython',
+        'NAME': 'VisionMadera',
         'USER': 'sa',
-        'PASSWORD': '1001015565Sc.',
+        'PASSWORD': 'TuClaveSegura@123',
         'HOST': 'localhost',
         'PORT': '1433',
         'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
+            'driver': 'ODBC Driver 18 for SQL Server',
             'extra_params': 'TrustServerCertificate=yes;',
         },
     }
