@@ -104,11 +104,7 @@ class Calificacion(models.Model):
     puntaje = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comentario = models.CharField(max_length=500, blank=True, null=True)
     fecha = models.DateField(auto_now_add=True)
-    
     cita = models.ForeignKey(Cita, on_delete=models.PROTECT)
 
     def __str__(self):
-        return f"Calificación {self.puntaje} - Cita {self.cita_id}"
-
-    class Meta:
-        db_table = 'visionmadera_calificacion'
+        return f"Calificación {self.puntaje} - Cita {self.cita}"
